@@ -1,0 +1,4 @@
+services:
+    app:
+        class: AppBundle\Service\AppService
+        arguments: [ @service_container ]

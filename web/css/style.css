@@ -1,0 +1,30 @@
+.main {
+    margin-top: 30px;
+}
+.test {
+    width: 800px;
+    margin: 0 auto;
+}
+.test__statusbar {
+    padding: 0;
+}
+.wordset {
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 30px 20px;
+}
+.wordset__question {
+    font-weight: bold;
+    font-size: 26px;
+    text-align: center;
+}
+.wordset__choices {
+    margin-top: 20px;
+}
+.wordset__choice {
+    display: block;
+    width: 300px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,18 @@
+<div class="test">
+    <div class="row">
+        <div class="col-md-12 test__statusbar">
+            <div class="pull-left"><b>Пользователь:</b> {{ test.user }}</div>
+            <div class="pull-right"><b>Очки:</b> {{ test.score }} <b>Ошибки:</b> {{ test.errors }}</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12 wordset">
+            <div class="wordset__question">{{ set.word }}</div>
+            <div class="wordset__choices">
+                <button class="btn btn-success btn-lg wordset__choice" ng-repeat="choice in set.choices" ng-click="doAnswer(choice, set)">{{ choice }}</button>
+            </div>
+
+        </div>
+    </div>
+</div>

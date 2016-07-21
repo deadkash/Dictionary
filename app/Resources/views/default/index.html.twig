@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>Dictionary</title>
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('bower_components/bootstrap/dist/css/bootstrap-theme.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <base href="/">
+</head>
+<body ng-app="Dictionary">
+<div class="container main" ng-view></div>
+
+<script src="{{ asset('bower_components/angular/angular.min.js') }}"></script>
+<script src="{{ asset('bower_components/angular-route/angular-route.min.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/app.routing.js') }}"></script>
+<script src="{{ asset('js/controllers/startCtrl.js') }}"></script>
+<script src="{{ asset('js/controllers/testCtrl.js') }}"></script>
+<script src="{{ asset('js/controllers/errorCtrl.js') }}"></script>
+<script src="{{ asset('js/controllers/resultCtrl.js') }}"></script>
+<script src="{{ asset('js/services/testService.js') }}"></script>
+
+</body>
+</html>
