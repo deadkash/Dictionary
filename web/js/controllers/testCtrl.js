@@ -12,9 +12,16 @@
         }
 
         $scope.test = TestService;
+        $scope.valid = [];
+        $scope.invalid = [];
 
         var getWordSet = function() {
+
+            $scope.valid = [];
+            $scope.invalid = [];
+
             TestService.getWordSet(function(data) {
+
                 if (data) {
                     $scope.set = data;
                 }
@@ -26,18 +33,26 @@
 
         getWordSet();
 
-        $scope.doAnswer = function(option, set) {
+        $scope.doAnswer = function(option, set, index) {
+
             TestService.checkWord(option, set, function(data) {
 
                 if (data.result) {
-                    TestService.onCorrectAnswer();
-                    getWordSet();
+                    $scope.valid[index] = true;
+                    setTimeout(function() {
+                        TestService.onCorrectAnswer();
+                        getWordSet();
+                    }, TestService.btnColorTimeout);
                 }
                 else {
-                    TestService.onIncorrectAnswer();
-                    if (TestService.isGameOver()) {
-                        $location.path('/result');
-                    }
+                    $scope.invalid[index] = true;
+                    setTimeout(function() {
+                        $scope.invalid[index] = false;
+                        TestService.onIncorrectAnswer();
+                        if (TestService.isGameOver()) {
+                            $location.path('/result');
+                        }
+                    }, TestService.btnColorTimeout);
                 }
             });
         }

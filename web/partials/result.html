@@ -1,4 +1,13 @@
-<h1>Результат</h1>
+<div class="result">
+    <h1>Поздравляем!</h1>
 
-Очков: {{ test.score }}
-Ошибок: {{ test.errors }}
+    <p>Ваш результат:</p>
+    <p>
+        Очков: <b>{{ test.score }}</b>
+        Ошибок: <b>{{ test.errors }}</b>
+    </p>
+    <p>
+        <button ng-click="startOver()" class="btn btn-primary btn-lg">Начать заново</button>
+    </p>
+
+</div>

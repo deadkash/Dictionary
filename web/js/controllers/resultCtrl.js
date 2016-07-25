@@ -11,6 +11,10 @@
             $location.path('/');
             return;
         }
+
+        $scope.startOver = function() {
+            $location.path('/');
+        };
     }
 
 })();

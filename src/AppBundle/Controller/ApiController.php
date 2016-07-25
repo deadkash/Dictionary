@@ -18,17 +18,30 @@ class ApiController extends Controller
 {
 
     /**
+     * Start test session
+     *
      * @Route("/start")
-     * @Method("GET")
+     * @Method("POST")
+     * @param Request $request
      * @return JsonResponse
+     * @throws \Exception
      */
-    public function startAction()
+    public function startAction(Request $request)
     {
-        $this->get('app')->startSession();
+        $data = json_decode($request->getContent(), true);
+        $username = (isset($data['username'])) ? $data['username'] : false;
+
+        if (!$username) {
+            throw new \Exception('User undefined');
+        }
+
+        $this->get('app')->startSession($username);
         return new JsonResponse('ok');
     }
 
     /**
+     * Returns random word set
+     *
      * @Route("/word_set")
      * @Method("GET")
      */
@@ -38,6 +51,8 @@ class ApiController extends Controller
     }
 
     /**
+     * Check if user choice is correct
+     *
      * @param Request $request
      * @return JsonResponse
      * @throws \Exception

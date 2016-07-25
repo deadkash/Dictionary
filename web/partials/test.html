@@ -10,7 +10,11 @@
         <div class="col-md-12 wordset">
             <div class="wordset__question">{{ set.word }}</div>
             <div class="wordset__choices">
-                <button class="btn btn-success btn-lg wordset__choice" ng-repeat="choice in set.choices" ng-click="doAnswer(choice, set)">{{ choice }}</button>
+                <button class="btn btn-lg wordset__choice"
+                        ng-class="{'btn-success': valid[$index], 'btn-default' : !valid[$index] && !invalid[$index],
+                            'btn-danger' : invalid[$index]}"
+                        ng-repeat="choice in set.choices"
+                        ng-click="doAnswer(choice, set, $index)">{{ choice }}</button>
             </div>
 
         </div>

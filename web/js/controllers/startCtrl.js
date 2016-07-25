@@ -13,9 +13,7 @@
 
             $scope.valid = !!$scope.user;
             if ($scope.valid) {
-                TestService.start(function(){
-                    TestService.user = $scope.user;
-                    TestService.score = 0;
+                TestService.start($scope.user, function(){
                     $location.path('/test/');
                 });
             }
