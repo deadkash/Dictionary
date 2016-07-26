@@ -36,6 +36,13 @@ class Scores
     private $score;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="errors", type="integer")
+     */
+    private $errors;
+
+    /**
      * @var \DateTime
      *
      * @ORM\Column(name="created_at", type="datetime")
@@ -113,5 +120,21 @@ class Scores
     public function setCreatedAt($createdAt)
     {
         $this->createdAt = $createdAt;
+    }
+
+    /**
+     * @return int
+     */
+    public function getErrors()
+    {
+        return $this->errors;
+    }
+
+    /**
+     * @param int $errors
+     */
+    public function setErrors($errors)
+    {
+        $this->errors = $errors;
     }
 }

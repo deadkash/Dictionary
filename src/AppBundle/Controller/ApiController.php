@@ -73,4 +73,25 @@ class ApiController extends Controller
         
         return new JsonResponse(array('result' => $this->get('app')->checkWord($word, $choice, $type)));
     }
+
+    /**
+     * Save test results
+     *
+     * @Route("/save_result")
+     * @Method("POST")
+     * @param Request $request
+     * @return JsonResponse
+     */
+    public function saveResultAction(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $username = (isset($data['username'])) ? $data['username'] : '';
+        $scores = (isset($data['score'])) ? $data['score'] : 0;
+        $errors = (isset($data['errors'])) ? $data['errors'] : 0;
+
+        $this->get('app')->saveScores($username, $scores, $errors);
+
+        return new JsonResponse('ok');
+    }
 }

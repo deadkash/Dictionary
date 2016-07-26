@@ -28,7 +28,7 @@
                     $scope.set = data;
                 }
                 else {
-                    $location.path('/result');
+                    TestService.onTestEnd();
                 }
             });
         };
@@ -55,7 +55,7 @@
                     $scope.invalid[index] = true;
                     TestService.onIncorrectAnswer();
                     if (TestService.isGameOver()) {
-                        $location.path('/result');
+                        TestService.onTestEnd();
                     }
 
                     setTimeout(function() {

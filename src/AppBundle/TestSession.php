@@ -3,8 +3,6 @@
 namespace AppBundle;
 
 
-use AppBundle\Service\AppService;
-
 class TestSession
 {
     /** @var string */
@@ -114,13 +112,5 @@ class TestSession
     public function addError()
     {
         $this->errors++;
-    }
-
-    /**
-     * @return int
-     */
-    public function getScores()
-    {
-        return $this->valid * AppService::CORRECT_ANSWER_SCORE;
     }
 }

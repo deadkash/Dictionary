@@ -16,9 +16,6 @@ class AppService
     //Quantity of random words in set
     const SET_SIZE = 3;
 
-    //Quantity of score for one correct answer
-    const CORRECT_ANSWER_SCORE = 1;
-
     const TYPE_ORIGINAL = 'original';
     const TYPE_TRANSLATE = 'translate';
     const TEST_SESSION_KEY = 'test_session';
@@ -120,7 +117,6 @@ class AppService
 
         //Test is over if random word is false (Unused words not found)
         if (!$randomWord) {
-            $this->saveScores();
             return false;
         }
 
@@ -257,19 +253,21 @@ class AppService
 
     /**
      * Save user scores in the Database
+     * @param string $username
+     * @param int $score
+     * @param int $errors
      * @return Scores
      */
-    public function saveScores()
+    public function saveScores($username, $score, $errors)
     {
         /** @var EntityManager $em */
         $em = $this->container->get('doctrine')->getManager();
 
-        $session = $this->getSession();
-
         $scores = new Scores();
         $scores->setCreatedAt(new \DateTime());
-        $scores->setUsername($session->getUsername());
-        $scores->setScore($session->getScores());
+        $scores->setUsername($username);
+        $scores->setScore($score);
+        $scores->setErrors($errors);
         $em->persist($scores);
         $em->flush($scores);
 

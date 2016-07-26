@@ -3,6 +3,9 @@
 
     function TestService($http, $location) {
 
+        var CORRECT_ANSWER_SCORE = 1;
+        var ERRORS_TO_GAME_OVER = 3;
+
         /**
          * Username
          * @type {string}
@@ -32,9 +35,6 @@
          * @type {number}
          */
         this.btnColorTimeout = 500;
-
-        var CORRECT_ANSWER_SCORE = 1;
-        var ERRORS_TO_GAME_OVER = 3;
 
         /**
          * Start test session
@@ -93,6 +93,25 @@
         };
 
         /**
+         * Save test results
+         * @param callback
+         */
+        this.saveResult = function(callback) {
+
+            $http.post(this.apiUrl + '/save_result', {
+                username: this.user,
+                score: this.score,
+                errors: this.errors
+            }).then(function successResult() {
+                if (typeof callback == 'function') {
+                    callback();
+                }
+            }, function errorResult() {
+                $location.path('/error');
+            });
+        };
+
+        /**
          * Calling if user selected correct choice
          */
         this.onCorrectAnswer = function() {
@@ -104,6 +123,15 @@
          */
         this.onIncorrectAnswer = function() {
             this.errors++;
+        };
+
+        /**
+         * Calling if test is over
+         */
+        this.onTestEnd = function() {
+            this.saveResult(function(){
+                $location.path('/result');
+            });
         };
 
         /**
