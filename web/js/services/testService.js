@@ -45,6 +45,7 @@
 
             this.user = user;
             this.score = 0;
+            this.errors = 0;
 
             $http.post(this.apiUrl + '/start', {username: user}).then(function successResult(response) {
                 if (typeof callback == 'function') {

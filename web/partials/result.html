@@ -1,5 +1,6 @@
 <div class="result">
-    <h1>Поздравляем!</h1>
+    <h1 ng-if="!test.isGameOver()">Поздравляем!</h1>
+    <h1 ng-if="test.isGameOver()">Тест окончен</h1>
 
     <p>Ваш результат:</p>
     <p>
